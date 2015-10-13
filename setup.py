@@ -12,7 +12,6 @@ extras_require = {
     'test': [
         'pyopenssl',
         'pytest',
-        'pytest-cov',
     ]
 }
 
