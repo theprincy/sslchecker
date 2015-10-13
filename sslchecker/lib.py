@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from urlparse import urlparse
 from sslcert import SSLCert
+import click
 import ssl
 
 
@@ -9,7 +10,7 @@ def get_sslcert(domain):
         try:
             parse_object = urlparse(domain)
         except:
-            print "Specified domain is wrong"
+            click.echo("Specified domain is wrong")
             return False
         domain = parse_object.netloc
 
