@@ -10,8 +10,10 @@ from setuptools import setup
 
 extras_require = {
     'test': [
+        'coveralls',
         'pyopenssl',
         'pytest',
+        'pytest-cov',
     ]
 }
 
@@ -36,6 +38,7 @@ setup(
         'pyopenssl',
     ],
     tests_require=extras_require['test'],
+    test_suite="py.test",
     classifiers=[
         'Development Status :: 1 - Alpha',
         'Environment :: Console',
