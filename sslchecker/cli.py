@@ -2,6 +2,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 import click
+import datetime
 import pycountry
 
 from lib import get_sslcert
@@ -15,13 +16,15 @@ def cli(domain):
         sslcert = get_sslcert(domain)
     except:
         click.secho("#################", fg='red', bold=True)
-        click.secho("# SSL Unsecured #", fg='red', bold=True)
+        click.secho("# SSL unsecured #", fg='red', bold=True)
         click.secho("#################", fg='red', bold=True)
         click.echo("No SSL certificates were found on {}.".format(domain))
-        return None
+        return False
 
-    secured = sslcert.is_secured
-    warning = (0 < sslcert.expire_in) and (sslcert.expire_in < 30)
+    expire_in = _expire_in(sslcert)
+    secured = _secured(sslcert)
+    warning = _warning(sslcert)
+
     secure_text = '# SSL secured #'
     append_secure_text = '###############'
 
@@ -31,7 +34,7 @@ def cli(domain):
         color = 'yellow'
     else:
         color = 'red'
-        secure_text = '# SSL Unsecured #'
+        secure_text = '# SSL unsecured #'
         append_secure_text = '#################'
 
     click.secho("{}".format(append_secure_text), fg=color, bold=True)
@@ -43,7 +46,7 @@ def cli(domain):
 
     if secured:
         click.echo("Expiration date: {0.notafter}".format(sslcert))
-        click.echo("\tExpire in {0.expire_in} days.\n".format(sslcert))
+        click.echo("\tExpire in {0} days.\n".format(expire_in))
     else:
         click.secho("Expiration date: {0.notafter}".format(sslcert), fg='red')
 
@@ -70,3 +73,16 @@ def cli(domain):
         click.echo("\t{0}: {1}".format(cat, cat_value))
 
     return None
+
+
+def _warning(sslcert):
+    return (0 < _expire_in(sslcert)) and (_expire_in(sslcert) < 30)
+
+
+def _secured(sslcert):
+    return not sslcert.has_expired
+
+
+def _expire_in(sslcert):
+    d = sslcert.notafter - datetime.datetime.now()
+    return d.days

@@ -11,7 +11,8 @@ from setuptools import setup
 extras_require = {
     'test': [
         'pyopenssl',
-        'pytest'
+        'pytest',
+        'pytest-cov',
     ]
 }
 
