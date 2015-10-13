@@ -12,7 +12,6 @@ pip install sslchecker
 
 ```shell
 $ sslchecker google.com
-
 ###############
 # SSL secured #
 ###############
