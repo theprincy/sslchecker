@@ -2,6 +2,10 @@
 
 A simple SSL certificates validator on your command line.
 
+[![Build Status](https://travis-ci.org/raccoonyy/sslchecker.svg?branch=master)](https://travis-ci.org/raccoonyy/sslchecker)
+
+[![Coverage Status](https://coveralls.io/repos/raccoonyy/sslchecker/badge.svg?branch=master&service=github)](https://coveralls.io/github/raccoonyy/sslchecker?branch=master)
+
 ## pip install
 
 ```shell
