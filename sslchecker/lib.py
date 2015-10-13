@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from urlparse import urlparse
-from sslcert import SSLCert
+from netlib.certutils import SSLCert
 import click
 import ssl
 
@@ -16,7 +16,8 @@ def get_sslcert(domain):
 
     try:
         cert = ssl.get_server_certificate((domain, 443))
+        x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
     except:
         return False
 
-    return SSLCert(cert)
+    return SSLCert(x509)

@@ -31,6 +31,7 @@ setup(
     install_requires=[
         'click',
         'colorama',
+        'netlib',
         'pycountry',
         'pyopenssl',
     ],
