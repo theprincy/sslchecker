@@ -17,7 +17,7 @@ class TestCliCommand(unittest.TestCase):
     def test_failed_naver_domain(self):
         runner = CliRunner()
         result = runner.invoke(cli, ['naver.com'])
-        assert result.exit_code == -1
+        assert not result.exit_code == 0
         assert result.exception
 
     def test_warning_pinkfong_domain(self):
