@@ -1,4 +1,4 @@
-# ssl checker
+# SSL checker
 
 A simple SSL certificates validator on your command line.
 
@@ -6,13 +6,13 @@ A simple SSL certificates validator on your command line.
 
 [![Coverage Status](https://coveralls.io/repos/raccoonyy/sslchecker/badge.svg?branch=master&service=github)](https://coveralls.io/github/raccoonyy/sslchecker?branch=master)
 
-## pip install
+## install
 
 ```shell
 pip install sslchecker
 ```
 
-## example
+## Sample result
 
 ```shell
 $ sslchecker google.com
@@ -32,3 +32,11 @@ Issued by:
     Organization: Google Inc
     Common name: Google Internet Authority G2
 ```
+
+## Author
+
+Seungho Kim(@raccoonyy)
+
+## License
+
+sslchecker is distributed under MIT license.
