@@ -9,7 +9,7 @@ A simple SSL certificates validator on your command line.
 ## Requirements
 `Python` >= 2.7
 
-## install
+## Installation
 
 ```shell
 pip install sslchecker
