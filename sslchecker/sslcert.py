@@ -44,6 +44,12 @@ class SSLCert(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __repr__(self):
+        return '<SSLCert {}>'.format(self.cn)
+
+    def __str__(self):
+        return 'sslcert'
+
     @classmethod
     def from_pem(klass, txt):
         x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, txt)
@@ -64,23 +70,28 @@ class SSLCert(object):
 
     @property
     def issuer(self):
-        return self.x509.get_issuer().get_components()
+        issuer = self.x509.get_issuer().get_components()
+        if not type(issuer[0][0]) == bytes:
+            return issuer
+
+        new_issuer = set()
+        for issue in issuer:
+            new_issuer.add((issue[0].decode('utf-8'), issue[1].decode('utf-8')))
+        return new_issuer
 
     @property
     def notbefore(self):
         t = self.x509.get_notBefore()
-        try:
-            return datetime.datetime.strptime(t.decode("ascii"), "%Y%m%d%H%M%SZ")
-        except TypeError:
-            return datetime.datetime.strptime(t.decode("utf-8"), "%Y%m%d%H%M%SZ")
+        if type(t) == bytes:
+            t = t.decode('utf-8')
+        return datetime.datetime.strptime(t, "%Y%m%d%H%M%SZ")
 
     @property
     def notafter(self):
         t = self.x509.get_notAfter()
-        try:
-            return datetime.datetime.strptime(t.decode("ascii"), "%Y%m%d%H%M%SZ")
-        except TypeError:
-            return datetime.datetime.strptime(t.decode("utf-8"), "%Y%m%d%H%M%SZ")
+        if type(t) == bytes:
+            t = t.decode('utf-8')
+        return datetime.datetime.strptime(t, "%Y%m%d%H%M%SZ")
 
     @property
     def has_expired(self):
@@ -92,7 +103,10 @@ class SSLCert(object):
 
     @property
     def serial(self):
-        return self.x509.get_serial_number()
+        serial = self.x509.get_serial_number()
+        if type(serial) == bytes:
+            serial = serial.decode('utf-8')
+        return serial
 
     @property
     def keyinfo(self):
@@ -112,6 +126,8 @@ class SSLCert(object):
         for i in self.subject:
             if i[0] == b"CN":
                 c = i[1]
+        if type(c) == bytes:
+            c = c.decode('utf-8')
         return c
 
     @property
@@ -126,4 +142,6 @@ class SSLCert(object):
                     continue
                 for i in dec[0]:
                     altnames.append(i[0].asOctets())
+        if type(altnames) == bytes:
+            altnames = altnames.decode('utf-8')
         return altnames
