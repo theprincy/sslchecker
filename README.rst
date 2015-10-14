@@ -48,7 +48,7 @@ Sample result
 Author
 --------------------------------------------
 
-Seungho Kim(@raccoonyy)
+Seungho Kim(`@raccoonyy <https://twitter.com/raccoonyy>`_!)
 
 
 Thanks to

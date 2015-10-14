@@ -38,7 +38,7 @@ Issued by:
 
 ## Author
 
-Seungho Kim(@raccoonyy)
+Seungho Kim([@raccoonyy](https://twitter.com/raccoonyy))
 
 ## Thanks to
 [@limeburst](https://github.com/limeburst)
