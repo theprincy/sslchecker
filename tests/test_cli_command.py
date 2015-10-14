@@ -24,4 +24,4 @@ class TestCliCommand(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(cli, ['pinkfong.com'])
         assert result.exit_code == 0
-        assert 'SSL unsecured' in result.output
+        assert 'SSL secured' in result.output
