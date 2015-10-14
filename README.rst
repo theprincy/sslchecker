@@ -12,7 +12,7 @@ SSLChecker is a simple SSL certificates validator on your command line.
 Requirements
 --------------------------------------------
 
-- `Python` >= 2.7
+- Python >= 2.7
 
 Installation
 --------------------------------------------
