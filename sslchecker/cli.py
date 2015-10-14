@@ -56,6 +56,7 @@ def cli(domain):
     for issuer in sslcert.issuer:
         cat_name = issuer[0]
         cat_value = issuer[1]
+        cat = ''
         if cat_name == 'O':
             cat = 'Organization'
         elif cat_name == 'C':
