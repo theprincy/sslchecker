@@ -28,6 +28,11 @@ Author
 Seungho Kim(@raccoonyy)
 
 
+Thanks to
+--------------------------------------------
+`@limeburst <https://github.com/limeburst>`_!
+
+
 License
 --------------------------------------------
 sslchecker is distributed under MIT license.

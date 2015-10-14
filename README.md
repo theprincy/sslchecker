@@ -40,6 +40,9 @@ Issued by:
 
 Seungho Kim(@raccoonyy)
 
+## Thanks to
+[@limeburst](https://github.com/limeburst)
+
 ## License
 
 sslchecker is distributed under MIT license.
