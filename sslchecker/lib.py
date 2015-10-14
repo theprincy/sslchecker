@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import (unicode_literals)
-from netlib.certutils import SSLCert
+from .sslcert import SSLCert
 from socket import error as socket_error
 import errno
 import socket
