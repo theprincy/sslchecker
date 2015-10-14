@@ -19,12 +19,12 @@ extras_require = {
 
 setup(
     name='sslchecker',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/raccoonyy/sslchecker',
     author='Seungho Kim',
     author_email='raccoonyy@gmail.com',
     description='Check SSL certificates of a site on your command line',
-    long_description=__doc__,
+    long_description=open('README.rst').read(),
     packages=['sslchecker'],
     entry_points={
         'console_scripts': ['sslchecker = sslchecker.cli:cli']
