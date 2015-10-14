@@ -4,6 +4,7 @@
 import click
 import datetime
 import pycountry
+import sys
 
 from .lib import get_sslcert
 
@@ -12,12 +13,14 @@ from .lib import get_sslcert
 @click.argument('domain')
 def cli(domain):
     """A simple SSL certificates validator on your command line."""
-    sslcert = get_sslcert(domain)
-    # click.secho("#################", fg='red', bold=True)
-    # click.secho("# SSL unsecured #", fg='red', bold=True)
-    # click.secho("#################", fg='red', bold=True)
-    # click.echo("No SSL certificates were found on {}.".format(domain))
-    # sys.exit()
+    try:
+        sslcert = get_sslcert(domain)
+    except:
+        click.secho("#################", fg='red', bold=True)
+        click.secho("# SSL unsecured #", fg='red', bold=True)
+        click.secho("#################", fg='red', bold=True)
+        click.echo("No SSL certificates were found on {}.".format(domain))
+        sys.exit()
 
     expire_in = _expire_in(sslcert)
     secured = _secured(sslcert)
