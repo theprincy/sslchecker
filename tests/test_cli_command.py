@@ -19,9 +19,3 @@ class TestCliCommand(unittest.TestCase):
         result = runner.invoke(cli, ['naver.com'])
         assert not result.exit_code == 0
         assert result.exception
-
-    def test_warning_pinkfong_domain(self):
-        runner = CliRunner()
-        result = runner.invoke(cli, ['pinkfong.com'])
-        assert result.exit_code == 0
-        assert 'SSL secured' in result.output

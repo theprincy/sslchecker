@@ -21,6 +21,3 @@ class TestGetSslCert(unittest.TestCase):
     def test_failed_naver_domain(self, domain='naver.com'):
         with pytest.raises(socket.error):
             get_sslcert(domain)
-
-    def test_failed_expired_domain(self, domain='pinkfong.com'):
-        assert not get_sslcert(domain).has_expired
