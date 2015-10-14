@@ -23,4 +23,4 @@ class TestGetSslCert(unittest.TestCase):
             get_sslcert(domain)
 
     def test_failed_expired_domain(self, domain='pinkfong.com'):
-        assert get_sslcert(domain).has_expired
+        assert not get_sslcert(domain).has_expired
