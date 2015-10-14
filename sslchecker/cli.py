@@ -5,7 +5,7 @@ import click
 import datetime
 import pycountry
 
-from lib import get_sslcert
+from .lib import get_sslcert
 
 
 @click.command()
