@@ -40,7 +40,7 @@ setup(
     tests_require=extras_require['test'],
     test_suite="py.test",
     classifiers=[
-        'Development Status :: 1 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Operating System :: POSIX',
         'Programming Language :: Python :: 2.7',
