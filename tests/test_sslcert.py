@@ -10,13 +10,13 @@ class TestSSLCert:
         with open(os.path.join(TEST_PATH, "google_cert.txt"), "rb") as f:
             d = f.read()
         c1 = SSLCert.from_pem(d)
-        assert c1.cn == b"google.com"
+        assert c1.cn == "google.com"
         assert len(c1.altnames) == 436
 
         with open(os.path.join(TEST_PATH, "inode_cert.txt"), "rb") as f:
             d = f.read()
         c2 = SSLCert.from_pem(d)
-        assert c2.cn == b"www.inode.co.nz"
+        assert c2.cn == "www.inode.co.nz"
         assert len(c2.altnames) == 2
         assert c2.digest("sha1")
         assert c2.notbefore
