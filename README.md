@@ -6,6 +6,9 @@ A simple SSL certificates validator on your command line.
 
 [![Coverage Status](https://coveralls.io/repos/raccoonyy/sslchecker/badge.svg?branch=master&service=github)](https://coveralls.io/github/raccoonyy/sslchecker?branch=master)
 
+## Requirements
+`Python` >= 2.7
+
 ## install
 
 ```shell
