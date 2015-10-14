@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import (unicode_literals)
 from .sslcert import SSLCert
-from socket import error as socket_error
-import errno
+import OpenSSL
 import socket
 import ssl
-import OpenSSL
 try:
     from urllib.parse import urlparse
 except ImportError:
@@ -20,14 +18,9 @@ def get_sslcert(domain):
     try:
         cert = ssl.get_server_certificate((domain, 443))
         x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
-    except socket.gaierror:
-        print("Nodename nor servname provided, or not known")
-        return False
-    except socket_error as serr:
-        if serr.errno != errno.ECONNREFUSED:
-            raise serr
-        return False
-    except:
-        return False
-
-    return SSLCert(x509)
+    except socket.gaierror as err:
+        raise err
+    except socket.error as err:
+        raise err
+    else:
+        return SSLCert(x509)
