@@ -19,7 +19,7 @@ extras_require = {
 
 setup(
     name='sslchecker',
-    version='0.1.4',
+    version='0.1.5',
     url='https://github.com/raccoonyy/sslchecker',
     author='Seungho Kim',
     author_email='raccoonyy@gmail.com',
