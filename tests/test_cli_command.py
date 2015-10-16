@@ -19,3 +19,15 @@ class TestCliCommand(unittest.TestCase):
         result = runner.invoke(cli, ['naver.com'])
         assert not result.exit_code == 0
         assert result.exception
+
+    def test_failed_timeout(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ['chosun.com'])
+        assert not result.exit_code == 0
+        assert result.exception
+
+    def test_failed_self_certificates(self):
+        runner = CliRunner()
+        result = runner.invoke(cli, ['newstapa.org'])
+        assert not result.exit_code == 0
+        assert result.exception
