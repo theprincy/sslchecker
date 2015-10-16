@@ -29,6 +29,9 @@ setup(
     entry_points={
         'console_scripts': ['sslchecker = sslchecker.cli:cli']
     },
+    data_files=[
+        ('data', ['cacert.pem', ]),
+    ],
     extras_require=extras_require,
     install_requires=[
         'click',
