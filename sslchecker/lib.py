@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import (unicode_literals)
 from .sslcert import SSLCert
+from socket import setdefaulttimeout
+from ssl import SSLError
 import click
 import datetime
 import OpenSSL
+import os
 import pycountry
 import socket
 import ssl
@@ -13,14 +16,20 @@ except ImportError:
     from urlparse import urlparse
 
 
+FILE_PATH = os.path.dirname(__file__)
+setdefaulttimeout(3)
+
+
 def get_sslcert(domain):
     if ('http' in domain) or ('/' in domain):
         parse_object = urlparse(domain)
         domain = parse_object.netloc
 
     try:
-        cert = ssl.get_server_certificate((domain, 443))
+        cert = ssl.get_server_certificate((domain, 443), ca_certs=os.path.join(FILE_PATH, 'data/cacert.pem'))
         x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
+    except SSLError as err:
+        raise err
     except socket.gaierror as err:
         raise err
     except socket.error as err:
